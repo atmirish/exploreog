@@ -233,7 +233,7 @@ button.pill:active{transform:translateY(3px);box-shadow:none}
 }
 
 .curr{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin:2px 0 8px;line-height:1.5}
-.strand{display:inline-block;width:116px;height:24px;line-height:20px;vertical-align:middle;box-sizing:border-box;text-align:center;white-space:nowrap;color:#fff;font-weight:700;font-size:12.5px;padding:2px 6px;border-radius:999px;border:2px solid var(--ink);margin-right:4px}
+.strand{display:inline-block;width:132px;height:26px;line-height:22px;letter-spacing:.2px;-webkit-font-smoothing:antialiased;vertical-align:middle;box-sizing:border-box;text-align:center;white-space:nowrap;color:#fff;font-weight:700;font-size:14px;padding:0 6px;border-radius:999px;border:2px solid var(--ink);margin-right:4px}
 .modal .box.wide{max-width:760px}
 .currbox{text-align:left}.currbox h2{text-align:center}
 .currlist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -242,7 +242,7 @@ button.pill:active{transform:translateY(3px);box-shadow:none}
 .curritem h4{margin:0;font-size:19px}
 .curritem p{margin:3px 0 0;font-size:14px;line-height:1.35}
 .bystrand{display:flex;flex-direction:column;gap:8px;font-size:15px}
-.bystrand>div{display:grid;grid-template-columns:116px 1fr;gap:10px;align-items:start}.bystrand .strand{margin:0}
+.bystrand>div{display:grid;grid-template-columns:132px 1fr;gap:10px;align-items:start}.bystrand .strand{margin:0}
 @media (max-width:640px){.currlist{grid-template-columns:1fr}}
 /* gaa */
 .scoreboard{background:#14202b;border:var(--line);border-radius:16px;padding:12px 16px;color:#ffb347;font-family:var(--display);box-shadow:0 5px 0 var(--ink);min-width:min(460px,100%)}
@@ -1519,7 +1519,7 @@ const CURR={
   detect:{strand:'Number',units:['Numeration and counting','Sets and operations'],jr:'Odd and even numbers, counting in 2s, 5s and 10s',sr:'Multiples, factors, prime numbers, square numbers, lowest common multiple'},
   sprint:{strand:'Number',units:['Sets and operations'],jr:'Quick adding, taking away and doubles within 20',sr:'Mental strategies for all four operations, × 10 and × 100, halves'},
 };
-const STRANDCOL={'Number':'#f2a541','Measures':'#1f7fb8','Shape and space':'#2fa66a','Algebra':'#8e6bd8','Data and chance':'#e5604e','All strands':'#16324f'};
+const STRANDCOL={'Number':'#b35c00','Measures':'#1a6aa0','Shape and space':'#1d7a4c','Algebra':'#6b4bc0','Data and chance':'#c0392b','All strands':'#16324f'};
 function currTag(k){ const c=CURR[k]; return `<div class="curr"><span class="strand" style="background:${STRANDCOL[c.strand]}">${c.strand}</span> ${c.units.join(' · ')}</div>`; }
 function curriculum(){
   modal(`<div class="currbox"><h2>📚 Curriculum links</h2>
