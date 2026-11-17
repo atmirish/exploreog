@@ -233,7 +233,7 @@ button.pill:active{transform:translateY(3px);box-shadow:none}
 }
 
 .curr{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin:2px 0 8px;line-height:1.5}
-.strand{display:inline-block;color:#fff;font-weight:700;font-size:12.5px;padding:2px 9px;border-radius:999px;border:2px solid var(--ink);margin-right:4px}
+.strand{display:inline-block;width:116px;height:24px;line-height:20px;vertical-align:middle;box-sizing:border-box;text-align:center;white-space:nowrap;color:#fff;font-weight:700;font-size:12.5px;padding:2px 6px;border-radius:999px;border:2px solid var(--ink);margin-right:4px}
 .modal .box.wide{max-width:760px}
 .currbox{text-align:left}.currbox h2{text-align:center}
 .currlist{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -241,7 +241,8 @@ button.pill:active{transform:translateY(3px);box-shadow:none}
 .ci-art svg{width:54px;height:54px}
 .curritem h4{margin:0;font-size:19px}
 .curritem p{margin:3px 0 0;font-size:14px;line-height:1.35}
-.bystrand{display:flex;flex-direction:column;gap:6px;font-size:15px}
+.bystrand{display:flex;flex-direction:column;gap:8px;font-size:15px}
+.bystrand>div{display:grid;grid-template-columns:116px 1fr;gap:10px;align-items:start}.bystrand .strand{margin:0}
 @media (max-width:640px){.currlist{grid-template-columns:1fr}}
 /* gaa */
 .scoreboard{background:#14202b;border:var(--line);border-radius:16px;padding:12px 16px;color:#ffb347;font-family:var(--display);box-shadow:0 5px 0 var(--ink);min-width:min(460px,100%)}
