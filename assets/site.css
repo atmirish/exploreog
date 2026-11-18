@@ -163,3 +163,23 @@ section{padding:0 0 84px}
 .hero h1{white-space:nowrap;font-size:clamp(52px,7.4vw,100px);line-height:1.05}
 @media (max-width:520px){.nav a.pill[href="geography/"],.nav a.pill[href="maths/"]{width:auto;min-width:0}.nav{gap:6px}.nav a.pill{padding:6px 11px;font-size:14px}}
 @media (max-width:520px){.nav{flex-wrap:nowrap}.nav a.pill[href="geography/"],.nav a.pill[href="maths/"]{width:108px;padding:6px 4px;font-size:13px;white-space:nowrap}.brand{font-size:19px}}
+.gae{--tint:#ece5ff;--accent:#8b6fd6}
+.lvlnote{margin:18px 0 0;font-size:16px;color:var(--ink-soft)}
+.ctab th small{display:block;font-weight:600;opacity:.75;font-size:12px}
+.hero .ctas{grid-template-columns:repeat(3,minmax(0,200px))}
+.closing .ctas{grid-template-columns:repeat(3,minmax(0,300px))}
+@media (max-width:900px){.closing .ctas{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
+
+.ctab th small{color:#cfe0ee;opacity:1}
+.nav a.pill[href="gaeilge/"]{width:146px;justify-content:center;text-align:center;box-sizing:border-box}
+@media (max-width:520px){
+  .top{flex-wrap:wrap;row-gap:10px}
+  .top .nav{width:100%;display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px}
+  .top .nav a.pill[href]{width:auto!important;min-width:0;padding:7px 4px;font-size:13px;justify-content:center;white-space:nowrap}
+}
+
+/* hero subject buttons: three identical tiles, icon above the name */
+.hero .ctas{display:grid;grid-template-columns:repeat(3,minmax(0,150px))!important;gap:14px}
+.hero .ctas .big{flex-direction:column;gap:6px;padding:16px 6px 14px;height:112px;white-space:nowrap;font-size:23px;line-height:1}
+.hero .ctas .big .bi{font-size:30px;line-height:1}
+@media (max-width:520px){.hero .ctas{grid-template-columns:repeat(3,1fr)!important;gap:10px}.hero .ctas .big{height:96px;font-size:18px;padding:12px 4px}.hero .ctas .big .bi{font-size:26px}}
