@@ -432,6 +432,7 @@ button.tile:active{transform:translateY(4px);box-shadow:none}
 .vis .prep{width:320px}
 .helpbox{max-width:none!important}
 @media (min-width:860px){.helpgrid{grid-template-columns:repeat(3,1fr)!important}}
+#nextW{display:block;margin:12px auto 0}#nextW[hidden]{display:none}
 
 .pill[hidden]{display:none}a.pill{text-decoration:none;color:var(--ink)}
 </style>
@@ -1048,18 +1049,20 @@ function learnLitriu(){
 function playLitriu(){
   const jr=S.level==='junior', top=isTop(), N=jr?6:8, words=shuffle(jr?SPELL_JR:top?SPELL_TOP:SPELL_SR).slice(0,N);
   shell(jr?'Tap the letters in the right order to spell the word.':top?'Long words with extra letters. No picture this time, just the English!':'Spell the word. Some letters are extra, and watch out for the fada!',
-    `<div class="q" id="q" style="font-size:24px"></div><div id="vis" class="vis"></div><div class="tiles slots" id="slots"></div><div class="tiles pool" id="pool"></div><button class="btn small" id="undo">↶ Undo</button>`,`<div style="margin-top:10px">${progressDots(N)}</div>`);
+    `<div class="q" id="q" style="font-size:24px"></div><div id="vis" class="vis"></div><div class="tiles slots" id="slots"></div><div class="tiles pool" id="pool"></div><button class="btn small" id="undo">↶ Undo</button><button class="btn primary" id="nextW" hidden>Next word ➜</button>`,`<div style="margin-top:10px">${progressDots(N)}</div>`);
   runQuiz('litriu',N,(i,next)=>{ const w=words[i], x=wordOf(w), letters=[...w]; let typed=[], mistakes=0, done=false;
     const extra=jr?[]:[...new Set(letters.filter(c=>FADA[c]).map(c=>FADA[c]))].concat(shuffle([...'abcdeghilmnorstu'].filter(c=>!letters.includes(c))).slice(0,top?2:1)).slice(0,top?4:2);
     const pool=shuffle(letters.concat(extra).map((c,k)=>({c,k})));
+    const finish=ok=>{ $('#undo').hidden=true; const nb=$('#nextW'); nb.textContent=i===N-1?'Finish ✓':'Next word ➜'; nb.hidden=false; nb.focus();
+      nb.onclick=()=>{ nb.hidden=true; $('#undo').hidden=false; $('#slots').classList.remove('good'); next(ok); }; };
     $('#q').innerHTML=`Spell: <b>${x[1]}</b>`; $('#vis').innerHTML=top?'':pic(x[2],100); say(`How do you spell the Irish word for <b>${x[1]}</b>?`);
     function draw(){ $('#slots').innerHTML=letters.map((c,k)=>`<span class="tile slot ${typed[k]?'set':''}">${typed[k]?typed[k].c:''}</span>`).join('');
       $('#pool').innerHTML=pool.map((p,k)=>`<button class="tile ${typed.includes(p)?'used':''}" data-k="${k}">${p.c}</button>`).join('');
       $$('#pool button').forEach(b=>b.onclick=()=>{ if(done) return; const p=pool[+b.dataset.k]; if(typed.includes(p)) return;
         if(p.c===letters[typed.length]){ typed.push(p); tone([520+typed.length*40],.05); draw();
-          if(typed.length===letters.length){ done=true; yay(); $('#slots').classList.add('good'); say(`<b>${w}</b>! Maith thú!`); setTimeout(()=>{ $('#slots').classList.remove('good'); next(mistakes<2); },900); } }
+          if(typed.length===letters.length){ done=true; yay(); $('#slots').classList.add('good'); say(`<b>${w}</b>! Maith thú!`); finish(mistakes<2); } }
         else { mistakes++; nope(); b.classList.add('shake','bad'); setTimeout(()=>b.classList.remove('shake','bad'),500);
-          if(mistakes>=3){ done=true; say(`It's spelled <b>${w}</b>.`); typed=letters.map(c=>({c})); draw(); setTimeout(()=>next(false),1600); }
+          if(mistakes>=3){ done=true; say(`It's spelled <b>${w}</b>.`); typed=letters.map(c=>({c})); draw(); finish(false); }
           else say(p.c in FADA&&FADA[p.c]===letters[typed.length]?'Close! Check the fada.':'Not that one. Try again!'); } }); }
     $('#undo').onclick=()=>{ if(done||!typed.length) return; typed.pop(); draw(); };
     draw(); });
