@@ -433,6 +433,13 @@ button.tile:active{transform:translateY(4px);box-shadow:none}
 .helpbox{max-width:none!important}
 @media (min-width:860px){.helpgrid{grid-template-columns:repeat(3,1fr)!important}}
 #nextW{display:block;margin:12px auto 0}#nextW[hidden]{display:none}
+/* number dots: rows of five, like a ten frame */
+.dots{display:grid;grid-template-columns:repeat(5,12px);gap:5px;justify-content:center;margin-top:8px;max-width:none;letter-spacing:0}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--orange);border:2px solid #16324f;box-sizing:border-box}
+.dots i:nth-child(n+11){background:#4a9fe0}
+.dots.big{grid-template-columns:repeat(5,30px);gap:10px}
+.dots.big i{width:30px;height:30px;border-width:3px}
+.dots.none{display:block;color:#b7c3cd;font-size:16px}
 
 .pill[hidden]{display:none}a.pill{text-decoration:none;color:var(--ink)}
 </style>
@@ -797,7 +804,7 @@ const NUMSETS={
   e:{t:'1ú, 2ú, 3ú…', w:ORDINALS.map((o,k)=>[o,['1st','2nd','3rd'][k]||`${k+1}th`,`${k+1}ú`,'ord'])},
   f:{t:'Sums', w:SUMWORDS.map(x=>[x[0],x[1],x[2],'sum'])},
 };
-const dotsHTML=n=>`<div class="dots">${n?'●'.repeat(Math.min(n,20)):'<span style="color:#b7c3cd">(none)</span>'}</div>`;
+const dotsHTML=n=>n?`<div class="dots" role="img" aria-label="${n} dots">${'<i></i>'.repeat(Math.min(n,20))}</div>`:'<div class="dots none">(none)</div>';
 const peopleHTML=n=>`<div class="ppl">${'🧍'.repeat(n)}</div>`;
 function learnUimhreacha(){
   learnWords(NUMSETS,'Count as Gaeilge. Numbers for counting, and special words for counting people.',{
